@@ -1,0 +1,238 @@
+{
+  "zip_sha256": "56c885f84457f6680f8438f02bfcdac9579323d8a94465ee5f26e32baa727602",
+  "xls_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "member": "default of credit card clients.xls",
+  "retrieved_utc": "2026-11-24T15:14:53.234979+00:00",
+  "url": "https://archive.ics.uci.edu/static/public/350/default+of+credit+card+clients.zip",
+  "rows": 30000,
+  "unique_ids": 30000,
+  "target": "default payment next month",
+  "target_counts": {
+    "0": 23364,
+    "1": 6636
+  },
+  "split_sizes": [
+    24000,
+    6000,
+    19200,
+    4800
+  ],
+  "mapping": [
+    {
+      "uci": "X6",
+      "field": "PAY_0",
+      "month": "Sep 2005",
+      "family": "status"
+    },
+    {
+      "uci": "X7",
+      "field": "PAY_2",
+      "month": "Aug 2005",
+      "family": "status"
+    },
+    {
+      "uci": "X8",
+      "field": "PAY_3",
+      "month": "Jul 2005",
+      "family": "status"
+    },
+    {
+      "uci": "X9",
+      "field": "PAY_4",
+      "month": "Jun 2005",
+      "family": "status"
+    },
+    {
+      "uci": "X10",
+      "field": "PAY_5",
+      "month": "May 2005",
+      "family": "status"
+    },
+    {
+      "uci": "X11",
+      "field": "PAY_6",
+      "month": "Apr 2005",
+      "family": "status"
+    },
+    {
+      "uci": "X12",
+      "field": "BILL_AMT1",
+      "month": "Sep 2005",
+      "family": "bill"
+    },
+    {
+      "uci": "X13",
+      "field": "BILL_AMT2",
+      "month": "Aug 2005",
+      "family": "bill"
+    },
+    {
+      "uci": "X14",
+      "field": "BILL_AMT3",
+      "month": "Jul 2005",
+      "family": "bill"
+    },
+    {
+      "uci": "X15",
+      "field": "BILL_AMT4",
+      "month": "Jun 2005",
+      "family": "bill"
+    },
+    {
+      "uci": "X16",
+      "field": "BILL_AMT5",
+      "month": "May 2005",
+      "family": "bill"
+    },
+    {
+      "uci": "X17",
+      "field": "BILL_AMT6",
+      "month": "Apr 2005",
+      "family": "bill"
+    },
+    {
+      "uci": "X18",
+      "field": "PAY_AMT1",
+      "month": "Sep 2005",
+      "family": "repayment"
+    },
+    {
+      "uci": "X19",
+      "field": "PAY_AMT2",
+      "month": "Aug 2005",
+      "family": "repayment"
+    },
+    {
+      "uci": "X20",
+      "field": "PAY_AMT3",
+      "month": "Jul 2005",
+      "family": "repayment"
+    },
+    {
+      "uci": "X21",
+      "field": "PAY_AMT4",
+      "month": "Jun 2005",
+      "family": "repayment"
+    },
+    {
+      "uci": "X22",
+      "field": "PAY_AMT5",
+      "month": "May 2005",
+      "family": "repayment"
+    },
+    {
+      "uci": "X23",
+      "field": "PAY_AMT6",
+      "month": "Apr 2005",
+      "family": "repayment"
+    }
+  ],
+  "status_counts": {
+    "PAY_0": {
+      "-2": 2759,
+      "-1": 5686,
+      "0": 14737,
+      "1": 3688,
+      "2": 2667,
+      "3": 322,
+      "4": 76,
+      "5": 26,
+      "6": 11,
+      "7": 9,
+      "8": 19
+    },
+    "PAY_2": {
+      "-2": 3782,
+      "-1": 6050,
+      "0": 15730,
+      "1": 28,
+      "2": 3927,
+      "3": 326,
+      "4": 99,
+      "5": 25,
+      "6": 12,
+      "7": 20,
+      "8": 1
+    },
+    "PAY_3": {
+      "-2": 4085,
+      "-1": 5938,
+      "0": 15764,
+      "1": 4,
+      "2": 3819,
+      "3": 240,
+      "4": 76,
+      "5": 21,
+      "6": 23,
+      "7": 27,
+      "8": 3
+    },
+    "PAY_4": {
+      "-2": 4348,
+      "-1": 5687,
+      "0": 16455,
+      "1": 2,
+      "2": 3159,
+      "3": 180,
+      "4": 69,
+      "5": 35,
+      "6": 5,
+      "7": 58,
+      "8": 2
+    },
+    "PAY_5": {
+      "-2": 4546,
+      "-1": 5539,
+      "0": 16947,
+      "2": 2626,
+      "3": 178,
+      "4": 84,
+      "5": 17,
+      "6": 4,
+      "7": 58,
+      "8": 1
+    },
+    "PAY_6": {
+      "-2": 4895,
+      "-1": 5740,
+      "0": 16286,
+      "2": 2766,
+      "3": 184,
+      "4": 49,
+      "5": 13,
+      "6": 19,
+      "7": 46,
+      "8": 2
+    }
+  },
+  "fields": [
+    "ID",
+    "LIMIT_BAL",
+    "SEX",
+    "EDUCATION",
+    "MARRIAGE",
+    "AGE",
+    "PAY_0",
+    "PAY_2",
+    "PAY_3",
+    "PAY_4",
+    "PAY_5",
+    "PAY_6",
+    "BILL_AMT1",
+    "BILL_AMT2",
+    "BILL_AMT3",
+    "BILL_AMT4",
+    "BILL_AMT5",
+    "BILL_AMT6",
+    "PAY_AMT1",
+    "PAY_AMT2",
+    "PAY_AMT3",
+    "PAY_AMT4",
+    "PAY_AMT5",
+    "PAY_AMT6",
+    "default payment next month"
+  ],
+  "missing_model_entries": 0,
+  "license": "CC BY 4.0",
+  "doi": "10.24432/C55S3H"
+}
