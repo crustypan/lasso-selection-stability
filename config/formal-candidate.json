@@ -1,0 +1,126 @@
+{
+  "seed": 25112501,
+  "independent_seed": 25112502,
+  "formal_seed": 25112503,
+  "credit_split_seed": 35025,
+  "credit_validation_seed": 35026,
+  "credit_pilot_seed": 35027,
+  "credit_formal_seed": 35028,
+  "formal_target": 200,
+  "credit_formal_target": 100,
+  "n": [
+    80,
+    240
+  ],
+  "rho": [
+    0,
+    0.5,
+    0.9,
+    0.99
+  ],
+  "signal_groups": 3,
+  "groups": 24,
+  "width": 5,
+  "truth_zero_based": [
+    2,
+    7,
+    12
+  ],
+  "sigma": 1,
+  "l1_ratios": {
+    "lasso": 1,
+    "elastic": 0.5
+  },
+  "linear_grid": {
+    "min": 0.01,
+    "max": 2,
+    "count": 24
+  },
+  "ridge_grid": {
+    "min": 0.0001,
+    "max": 100,
+    "count": 25
+  },
+  "credit_grid": {
+    "min": 0.0001,
+    "max": 0.1,
+    "count": 16
+  },
+  "folds": 5,
+  "thresholds": [
+    0.02,
+    0.05,
+    0.1
+  ],
+  "low_jaccard": 0.5,
+  "credit_each": 3000,
+  "credit_test_fraction": 0.2,
+  "credit_validation_fraction": 0.2,
+  "large_test": 100000,
+  "phase": "formal",
+  "pairs": 200,
+  "credit_pairs": 100,
+  "replication_pairs": 200,
+  "ar_pairs": 200,
+  "replication_conditions": [
+    0,
+    2
+  ],
+  "credit_threshold": 0.003926628122873585,
+  "credit_gain": 0.0785325624574717,
+  "pilot_fixed_alphas": {
+    "0": {
+      "elastic": 0.2515515246270451,
+      "lasso": 0.1586855527765864,
+      "ridge": 0.7811706625951745
+    },
+    "1": {
+      "elastic": 0.22567270012599477,
+      "lasso": 0.1586855527765864,
+      "ridge": 0.5623413251903491
+    },
+    "2": {
+      "elastic": 0.2515515246270451,
+      "lasso": 0.1260354181590685,
+      "ridge": 0.5623413251903491
+    },
+    "3": {
+      "elastic": 0.2515515246270451,
+      "lasso": 0.1260354181590685,
+      "ridge": 0.5623413251903491
+    },
+    "4": {
+      "elastic": 0.1586855527765864,
+      "lasso": 0.10010316851525645,
+      "ridge": 0.1778279410038923
+    },
+    "5": {
+      "elastic": 0.1586855527765864,
+      "lasso": 0.10010316851525645,
+      "ridge": 0.1778279410038923
+    },
+    "6": {
+      "elastic": 0.1260354181590685,
+      "lasso": 0.10010316851525645,
+      "ridge": 0.1778279410038923
+    },
+    "7": {
+      "elastic": 0.1260354181590685,
+      "lasso": 0.07950657436742774,
+      "ridge": 0.1778279410038923
+    },
+    "8": {
+      "elastic": 0.31671726345094525,
+      "lasso": 0.1997938756249444,
+      "ridge": 1.0
+    },
+    "9": {
+      "elastic": 0.1997938756249444,
+      "lasso": 0.1586855527765864,
+      "ridge": 0.1778279410038923
+    }
+  },
+  "xls_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "ar_seed": 25112504,
+  "bootstrap_draws": 3000
+}

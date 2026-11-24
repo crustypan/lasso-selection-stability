@@ -1,0 +1,10 @@
+{
+  "simulation_pair": "c03-p000",
+  "credit_pair": "p000",
+  "simulation_sample_records_exact": true,
+  "credit_record_exact": true,
+  "independent_logistic_solver_max_logit_diff": {
+    "1": 3.445954632752546e-08,
+    "0.5": 7.522929474923501e-07
+  }
+}

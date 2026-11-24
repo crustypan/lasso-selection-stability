@@ -91,28 +91,52 @@ def audit(fits, factor, key):
                                    se=se, z=(mse-expected)/se)
 
 
-def run_pair(task):
-    c,i = task
+def fixed_fits(x,y,penalties):
+    mean,sd=scaler(x)
+    z=(x-mean)/sd
+    fits={}
+    for name,alpha in penalties.items():
+        co,it,retry=coef_path(z,y-y.mean(),name,np.array([alpha]))
+        slopes=co[:,0]/sd
+        intercept=float(y.mean()-mean@slopes)
+        np.testing.assert_allclose(x@slopes+intercept,z@co[:,0]+y.mean(),atol=1e-10)
+        fits[name]=dict(alpha=alpha,coef=slopes.tolist(),intercept=intercept,max_iterations=it,retries=retry)
+    return fits
+
+
+def evaluate_pair(c,i,root_seed,folder,*,fixed=None,ar_parameter=None,check=False):
     n,rs,rn = CONDITIONS[c]
     cov = covariance(rs,rn)
+    if ar_parameter is not None:
+        distance=np.abs(np.subtract.outer(np.arange(5),np.arange(5)))
+        block=ar_parameter**distance
+        np.testing.assert_allclose(block[np.triu_indices(5,1)].mean(),rs)
+        cov=np.kron(np.eye(24),block)
     np.testing.assert_allclose(TRUTH@cov@TRUTH,3)
     factor = np.linalg.cholesky(cov)
-    path = OUT/"simulation"/f"c{c:02d}-p{i:03d}.json"
+    path = folder/f"c{c:02d}-p{i:03d}.json"
     pair = dict(condition=c,n=n,rho_signal=rs,rho_null=rn,pair=i,samples=[])
+    if ar_parameter is not None:
+        pair["ar_parameter"]=ar_parameter
     start = time.monotonic()
     for side in range(2):
-        data_seed, fold_seed, audit_seed = [seed(CFG["seed"],c,i,side,k) for k in range(3)]
+        data_seed, fold_seed, audit_seed = [seed(root_seed,c,i,side,k) for k in range(3)]
         x,y = generate(np.random.default_rng(data_seed),n,factor)
-        fits = fit_methods(x,y,fold_seed)
+        fits = fit_methods(x,y,fold_seed) if fixed is None else fixed_fits(x,y,fixed)
         for f in fits.values():
             delta = np.asarray(f["coef"])-TRUTH
             f["rmse"] = float(np.sqrt(1+f["intercept"]**2+delta@cov@delta))
-        if i == 0 and c < 8:
+        if check:
             audit(fits,factor,audit_seed)
         pair["samples"].append(dict(data_seed=data_seed,fold_seed=fold_seed,fits=fits))
     pair["seconds"] = round(time.monotonic()-start,3)
     atomic_json(path,pair)
     return c,i
+
+
+def run_pair(task):
+    c,i=task
+    return evaluate_pair(c,i,CFG["seed"],OUT/"simulation",check=(i==0 and c<8))
 
 
 if __name__ == "__main__":

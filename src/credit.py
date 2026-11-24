@@ -93,19 +93,23 @@ def train(x,y,xv,yv,fold_seed):
     return result
 
 
-def run_pair(i):
-    sampling=seed(CFG["credit_pilot_seed"],i,0)
-    left,remainder=train_test_split(POOL,train_size=CFG["credit_each"],stratify=Y[POOL],random_state=sampling)
-    right,_=train_test_split(remainder,train_size=CFG["credit_each"],stratify=Y[remainder],
-                             random_state=seed(CFG["credit_pilot_seed"],i,1))
-    assert set(left).isdisjoint(right) and set(np.r_[left,right]).isdisjoint(VAL)
+def evaluate_pair(i,root_seed,folder,x,y,pool,validation):
+    sampling=seed(root_seed,i,0)
+    left,remainder=train_test_split(pool,train_size=CFG["credit_each"],stratify=y[pool],random_state=sampling)
+    right,_=train_test_split(remainder,train_size=CFG["credit_each"],stratify=y[remainder],
+                             random_state=seed(root_seed,i,1))
+    assert set(left).isdisjoint(right) and set(np.r_[left,right]).isdisjoint(validation)
     samples=[]
     for side,indices in enumerate([left,right]):
-        foldseed=seed(CFG["credit_pilot_seed"],i,2+side)
-        fits=train(X[indices],Y[indices],X[VAL],Y[VAL],foldseed)
-        samples.append(dict(fold_seed=foldseed,defaults=int(Y[indices].sum()),fits=fits))
-    atomic_json(OUT/"credit"/f"p{i:03d}.json",dict(pair=i,sampling_seeds=[sampling,seed(CFG["credit_pilot_seed"],i,1)],samples=samples))
+        foldseed=seed(root_seed,i,2+side)
+        fits=train(x[indices],y[indices],x[validation],y[validation],foldseed)
+        samples.append(dict(fold_seed=foldseed,defaults=int(y[indices].sum()),fits=fits))
+    atomic_json(folder/f"p{i:03d}.json",dict(pair=i,sampling_seeds=[sampling,seed(root_seed,i,1)],samples=samples))
     return i
+
+
+def run_pair(i):
+    return evaluate_pair(i,CFG["credit_pilot_seed"],OUT/"credit",X,Y,POOL,VAL)
 
 
 def load_worker():
