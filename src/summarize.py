@@ -148,7 +148,8 @@ def sim_tables(folder,out):
                 diffs[k]=v.reindex(ids).to_numpy()
             for k,v in diffs.items():
                 boot=v[rng.integers(len(v),size=(3000,len(v)))].mean(axis=1) if len(v) else []
-                lo,hi=np.quantile(boot,[.025,.975]) if len(v) else (np.nan,np.nan)
+                # One observed pair supplies a point difference but no resampling uncertainty.
+                lo,hi=np.quantile(boot,[.025,.975]) if len(v)>1 else (np.nan,np.nan)
                 contrasts.append(dict(condition=c,subset=label,pairs=len(v),outcome=k,
                                       mean_elastic_minus_lasso=np.mean(v) if len(v) else np.nan,lo=lo,hi=hi))
     s=pd.DataFrame(summary)
