@@ -6,7 +6,8 @@ import pandas as pd
 
 from common import ROOT
 from formal import STAGES,load_config
-from summarize import sim_tables,sim_plot,credit_tables,save,wilson
+from main_figure import plot_formal
+from summarize import sim_tables,credit_tables,save,wilson
 
 
 def endpoint_table(p):
@@ -42,4 +43,4 @@ if __name__=="__main__":
             p=pd.read_csv(out/"pairs.csv")
             table=endpoint_table(p)
             if not table.empty: save(table,out,"endpoint_contrasts")
-            if stage=="main": sim_plot(s,out,"Formal")
+            if stage=="main": plot_formal(s,out/"simulation.png")

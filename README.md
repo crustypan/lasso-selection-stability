@@ -13,7 +13,7 @@ How often do two independent training samples yield models with similar predicti
 
 ![Prediction and selection across independently trained models](results/formal/main/simulation.png)
 
-**Figure 1.** Each column corresponds to a training size. The upper row shows median population RMSE with oracle RMSE at one. The middle row gives mean variable and group Jaccard. The lower row shows the probability of an RMSE gap at most 0.05 and variable Jaccard at most 0.5, with a 95% Wilson interval. The horizontal positions represent four ordered correlation settings.
+**Figure 1.** Each dot and interval estimates a proportion across independent training pairs (95% Wilson interval). The joint column divides the number of close-error, low-overlap pairs by all valid pairs. The conditional column divides the same numerator by the number with close error. The count beside each dot gives its exact numerator and denominator. Rows separate training samples of size 80 and 240. The bottom panels give median population RMSE and mean variable and group Jaccard.
 
 ## Study record
 
