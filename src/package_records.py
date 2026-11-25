@@ -29,9 +29,37 @@ def package(stage):
     atomic_json(out / "archive.json", dict(file=archive.name, rows=len(paths), sha256=digest))
 
 
+def restore(stage):
+    out=ROOT / "results/formal" / stage
+    meta=json.loads((out/"archive.json").read_text())
+    file=out/"fits.jsonl.gz"
+    if hashlib.sha256(file.read_bytes()).hexdigest()!=meta["sha256"]:
+        raise ValueError(f"{stage}: archive checksum mismatch")
+    seen=set()
+    with gzip.open(file,"rt") as stream:
+        for line in stream:
+            rec=json.loads(line)
+            i=int(rec["pair"])
+            name=f"p{i:03d}.json" if stage.startswith("credit") else f"c{int(rec['condition']):02d}-p{i:03d}.json"
+            if name in seen:
+                raise ValueError(f"Duplicate record: {name}")
+            seen.add(name)
+            path=out/"records"/name
+            if path.exists():
+                old=json.loads(path.read_text())
+                old.pop("seconds",None)
+                if old!=rec:
+                    raise ValueError(f"Existing fit differs from the archive: {path}")
+            else:
+                atomic_json(path,rec)
+    if len(seen)!=meta["rows"]:
+        raise ValueError(f"{stage}: archive count mismatch")
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", choices=(*STAGES, "all"), default="all")
-    stage = ap.parse_args().stage
-    for name in STAGES if stage == "all" else (stage,):
-        package(name)
+    ap.add_argument("--restore",action="store_true",help="Unpack published records for rebuilding tables and plots.")
+    args=ap.parse_args()
+    for name in STAGES if args.stage=="all" else (args.stage,):
+        (restore if args.restore else package)(name)

@@ -165,7 +165,7 @@ def sim_plot(s,out,label):
             if z.empty: continue
             x=np.arange(len(z))
             color=COLORS[method]
-            ax[0,j].plot(x,z.rmse_q50,"o-",color=color,label=method.title())
+            ax[0,j].plot(x,z.rmse_q50,"o-",color=color,label="Elastic Net" if method=="elastic" else method.title())
             if method=="ridge":continue
             ax[1,j].plot(x,z.j_var_mean,"o-",color=color)
             ax[1,j].plot(x,z.j_group_mean,"s--",color=color)
@@ -243,7 +243,9 @@ def credit_tables(folder,out,label):
             matrix.append([*z.monthly_rate,z.group_rate.iloc[0]])
         im=ax.imshow(matrix,vmin=0,vmax=1,cmap="Blues",aspect="auto")
         for i,z in enumerate(matrix):
-            for j,v in enumerate(z): ax.text(j,i,f"{v:.0%}",ha="center",va="center",color="white" if v>.56 else "black",fontsize=8)
+            for j,v in enumerate(z):
+                percent=f"{100*v:.1f}".rstrip("0").rstrip(".")+"%"
+                ax.text(j,i,percent,ha="center",va="center",color="white" if v>.56 else "black",fontsize=8)
         ax.set_xticks(range(7),MONTHS+["Any"]);ax.set_yticks(range(3),["Status","Bill","Repayment"])
         ax.set_title("Elastic Net" if m=="elastic" else "L1 logistic")
     fig.suptitle(label+" | Selection frequency across credit subsamples")
