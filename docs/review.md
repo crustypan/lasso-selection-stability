@@ -40,3 +40,9 @@ The 200 simulation pilot pairs and 20 credit pilot pairs reproduced their saved 
 | Credit, raw status encoding | 100 | 100 | Same complete fits |
 
 All six compressed fit archives matched byte for byte. Another 50 output files matched byte for byte, including the regenerated tables, figures, threshold records and metric audits. The independent implementation recomputed population RMSE to within 4.45 × 10⁻¹⁶ and credit scores to within 1.12 × 10⁻¹⁶. The exploratory Monte Carlo check of the largest original analytic-MSE discrepancy also reproduced its estimate of −1.28 Monte Carlo standard errors. [Full-refit record](../results/formal/full_refit.json) · [Independent metric audit](../results/formal/metric_audit.json) · [Analysis and reproduction commands](../README.md#reproduce)
+
+## Exploratory extension
+
+The revised formal figure displays the unconditional joint rate and the conditional rate side by side. All 16 method-by-condition numerators and both denominator series were checked against the formal pair table. Re-rendering from the formal condition table reproduced the revised PNG byte for byte.
+
+The two post-formal 0.99 controls each attempted 200 fresh training pairs. The 196 common valid signal-only pairs yielded 252 complete Lasso swaps across 588 jointly detected signal blocks. The 200 null-only pairs yielded zero across 600. A second execution of the 400 attempted pairs reproduced all 14 result files byte for byte, including the ledger for four convergence failures. The coefficient-based audit agreed with the primary event and swap counts. Its maximum absolute population RMSE discrepancy was 2.23 × 10⁻¹⁶ or less. [Exploratory section](report.md#exploratory-controls-at-correlation-099) · [Verification record](../results/exploratory/rho099/verification.json)

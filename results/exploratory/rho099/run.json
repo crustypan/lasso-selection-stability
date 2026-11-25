@@ -1,0 +1,29 @@
+{
+  "label": "Post-formal exploratory analysis",
+  "planned": 400,
+  "valid": 396,
+  "failures": [
+    {
+      "condition": 10,
+      "pair": 82,
+      "error": "lasso path failed convergence after retry"
+    },
+    {
+      "condition": 10,
+      "pair": 95,
+      "error": "lasso path failed convergence after retry"
+    },
+    {
+      "condition": 10,
+      "pair": 152,
+      "error": "lasso path failed convergence after retry"
+    },
+    {
+      "condition": 10,
+      "pair": 183,
+      "error": "lasso path failed convergence after retry"
+    }
+  ],
+  "root_seed": 25112599,
+  "frozen_sha256": "90d687947375b8cc162d054a89f7e2a9e6ff92d24c6764f9b96c2952763c78e3"
+}

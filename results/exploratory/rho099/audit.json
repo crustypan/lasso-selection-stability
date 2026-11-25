@@ -1,0 +1,13 @@
+{
+  "unique_data_and_fold_seeds": 1584,
+  "overlapping_formal_seeds": 0,
+  "checked_counts": [
+    "total",
+    "close_n",
+    "low_n",
+    "both_n",
+    "joint_group_hits",
+    "complete_swaps"
+  ],
+  "max_rmse_error": 2.220446049250313e-16
+}

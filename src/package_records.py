@@ -29,8 +29,8 @@ def package(stage, *, base=ROOT / "results/formal"):
     atomic_json(out / "archive.json", dict(file=archive.name, rows=len(paths), sha256=digest))
 
 
-def restore(stage):
-    out=ROOT / "results/formal" / stage
+def restore(stage, *, base=ROOT / "results/formal"):
+    out = base / stage
     meta=json.loads((out/"archive.json").read_text())
     file=out/"fits.jsonl.gz"
     if hashlib.sha256(file.read_bytes()).hexdigest()!=meta["sha256"]:

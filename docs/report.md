@@ -48,7 +48,30 @@ At $n=80,\rho=0.99$, mean variable Jaccard was **0.126 for Lasso and 0.420 for E
 | Independent-pilot fixed penalties | 96/200 versus 118/200 joint events. At 0.99 there were 236/600 complete swaps. | The main direction and near-collinear swaps persisted with tuning variability removed within each condition. |
 | AR(1) blocks with mean correlation 0.9 | Adjacent correlation 0.9480. Joint events 107/200, complete swaps 23/600. Equicorrelated blocks gave 107/200 and 5/600. | Holding the average correlation fixed preserved the event count here, while the position-dependent correlation structure changed substitution frequency. |
 
-The two correlation-specific controls were run at 0.9. Decompositions at 0.99 describe the observed blocks in that design. Conclusions concern this sparse Gaussian signal, CV rule and mixing fraction. [Independent replication](../results/formal/replication/endpoint_contrasts.csv) · [Fixed penalties](../results/formal/fixed/conditions.csv) · [AR(1) results](../results/formal/ar/conditions.csv)
+The original selective-correlation controls used 0.9. A subsequent exploratory experiment at 0.99 is reported separately below. Conclusions concern this sparse Gaussian signal, CV rule and mixing fraction. [Independent replication](../results/formal/replication/endpoint_contrasts.csv) · [Fixed penalties](../results/formal/fixed/conditions.csv) · [AR(1) results](../results/formal/ar/conditions.csv)
+
+## Exploratory controls at correlation 0.99
+
+After observing 244 complete Lasso substitutions in the all-correlated formal condition, we asked whether strong within-block correlation in the three signal blocks could account for frequent substitutions when the 21 null blocks were independent. We recorded the two controls before fitting them. Both used training size 80, fresh training pairs, the original tuning procedure and the original decision rules. Each high-correlation block had within-block correlation 0.99. Blocks remained mutually independent. [Exploratory plan](exploratory-plan.md) · [Configuration](../config/exploratory-rho099.json)
+
+| Blocks with high within-block correlation | Source | Close error and low overlap / valid pairs | Low overlap / close-error pairs | Complete swaps / jointly detected signal blocks |
+|---|---|---:|---:|---:|
+| None | Formal reference | 87/200 | 87/88 | 0/600 (0%) |
+| Signal blocks only | Exploratory | 89/196 | 89/89 | 252/588 (42.9%) |
+| Null blocks only | Exploratory | 111/200 | 111/112 | 0/600 (0%) |
+| All blocks | Formal reference | 114/200 | 114/114 | 244/600 (40.7%) |
+
+**Lasso made frequent complete substitutions when strong correlation was confined to signal blocks.** The signal-only rate exceeded the all-blocks estimate by 2.2 percentage points (95% pair-bootstrap interval −3.6 to +7.9). The interval allows differences in both directions, and the design specified no equivalence margin. The signal-only minus null-only difference was 42.9 points (+38.8 to +47.1). The intervals use 5,000 independent resamples of training pairs within each condition, keeping a pair’s three signal blocks together. [Four-cell results and event intervals](../results/exploratory/rho099/four_cells.csv) · [Swap-rate contrasts](../results/exploratory/rho099/swap_contrasts.csv)
+
+The aggregate stability measures tell a different part of the story. With only null blocks highly correlated, 111 of the 112 close-error pairs still had low variable overlap, despite zero complete signal-block swaps. Their supports differed on an average of 3.83 variables from signal blocks and 10.29 from null blocks. With only signal blocks highly correlated, those counts were 5.92 and 19.79. Elastic Net had zero complete swaps in both new controls. In the signal-only condition it selected 30.23 variables on average, versus 16.00 for Lasso, and averaged 27.23 false inclusions versus 14.22. [Method and mechanism estimates](../results/exploratory/rho099/four_cells.csv)
+
+![Lasso block substitutions and sources of selection disagreement at correlation 0.99](../results/exploratory/rho099/mechanism.png)
+
+**Figure 2.** Blue points identify the two exploratory controls and gray points the formal references. The left panel shows complete substitutions among signal blocks detected by both fits, with pair-bootstrap 95% intervals and exact counts. For cells with zero observed swaps, resampling the observed pairs also gives zero at both interval endpoints. The right panel counts predictors selected in exactly one fit and separates them by signal-block or null-block membership.
+
+We attempted 200 pairs in each new control. Four signal-only pairs failed the Lasso convergence rule after its specified retry. Estimates for every method use the 196 common valid pairs in that condition. All 200 null-only pairs were valid. As an exploratory missing-outcome check, the four failed pairs contribute at most 12 additional signal-block opportunities. Assigning all 12 as jointly detected with zero or 12 swaps gives the extremes of 252/600 and 264/600 (42.0–44.0%) for this set of attempted pairs. This range describes the effect of missing outcomes in these runs. The bootstrap interval above measures sampling uncertainty. [Failure ledger](../results/exploratory/rho099/run.json) · [Independent metric audit](../results/exploratory/rho099/audit.json)
+
+A second run from the recorded seeds reproduced the failure ledger, fit archive and all other exploratory outputs byte for byte. The formal figure was separately checked against the training-pair counts for both sparse methods in all eight formal conditions. [Verification record](../results/exploratory/rho099/verification.json)
 
 ## Credit default on held-out customers
 
@@ -62,7 +85,7 @@ Twenty-four thousand customers formed the development pool and 6,000 formed the 
 
 ![Formal credit selection frequencies](../results/formal/credit/credit.png)
 
-**Figure 2.** Cells give selection frequencies across 200 fits. “Any” means at least one month in that family. Both methods included some repayment-status information in every fit. The status months changed in 85/100 L1 pairs and 78/100 Elastic Net pairs. Bills entered 59% of L1 fits. With raw numeric status codes, L1 mean log loss worsened to 0.46653, bill inclusion rose to 98%, and mean group Jaccard rose to 0.977. This coding sensitivity illustrates how a three-group overlap measure approaches one when nearly every group enters. Shared customers and a common test set make these descriptive comparisons within this dataset. The default label permits predictive evaluation. Variable-selection truth is available only in the simulation. [Credit results and coding sensitivity](../results/formal/credit_models.csv)
+**Figure 3.** Cells give selection frequencies across 200 fits. “Any” means at least one month in that family. Both methods included some repayment-status information in every fit. The status months changed in 85/100 L1 pairs and 78/100 Elastic Net pairs. Bills entered 59% of L1 fits. With raw numeric status codes, L1 mean log loss worsened to 0.46653, bill inclusion rose to 98%, and mean group Jaccard rose to 0.977. This coding sensitivity illustrates how a three-group overlap measure approaches one when nearly every group enters. Shared customers and a common test set make these descriptive comparisons within this dataset. The default label permits predictive evaluation. Variable-selection truth is available only in the simulation. [Credit results and coding sensitivity](../results/formal/credit_models.csv)
 
 ## Verification and limitations
 

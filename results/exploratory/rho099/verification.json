@@ -1,0 +1,28 @@
+{
+  "label": "Exploratory extension verification",
+  "plan_commit": "77270a202103efd1788fbce13879c128ece63848",
+  "refit_command": "python src/exploratory_rho099.py --verify-refit --jobs 6",
+  "attempted_pairs": 400,
+  "valid_pairs": 396,
+  "matched_failure_records": 4,
+  "archived_rebuild_matching_files": 14,
+  "full_refit_matching_files": 14,
+  "sha256": {
+    "analytic_checks.csv": "8307ec3612a38e53b34e401135c11beef484ebd2d48af4aedcf1a95d521b883e",
+    "archive.json": "b2dbf99b2f0838ed2396ee20fb6d41936fef5a15924ce4365baba4ca08dedeaf",
+    "audit.json": "a7649f0b2659b451987e26d2bc4deef2be0d577cf3fdff8450a627503c48d6df",
+    "conditions.csv": "bb42053487de46f1b05a281392a5bc61cbc95d1e27eaa9bc2c078b41f96acc07",
+    "fits.csv": "2494ffa8c559e9b85cb26d9ef13abcb71789dfb1c45558590f8ca3d8b1d42608",
+    "fits.jsonl.gz": "1472a2ba042d39eb6a2520fda4d98cd379c3affd51d6939019c2bb8d4fa19571",
+    "four_cells.csv": "0833aa9594e48a4206a10bf8ecae6089e8c99e7bc1e1c751ae12570bb89f6843",
+    "mechanism.png": "1a102396aed62a5fe1e4daaaf1bc2e00ec175ac7c680c3a6e736ea450dc4d5b4",
+    "method_differences.csv": "9ac0fc3748f74fb7fb24eda067c9e098153fe45a3630d8d39e3fe9c4ac107778",
+    "pairs.csv": "8f669cd1984c5d3f1f69d491b6d673e6eef203967c7606b51a4368c4ad346ede",
+    "run.json": "0bb492186bb2dfb23fef5bf28cb22c047baef0b19899f5399af83d0ba929f4cc",
+    "swap_contrasts.csv": "2f304e22487e953988e068c7d05201ad24c173a35f5c117334259a1f90d9326d",
+    "thresholds.csv": "a23df06f68e08bddc278b6c6e2623870f04b61e7bbdf3e514be06f5e0d66a354",
+    "variable_frequencies.csv": "67433af2b13c75a2dd00d0441360dc22e068771695e29888425d1058eeda43b8"
+  },
+  "formal_figure_checked_cells": 16,
+  "formal_figure_sha256": "4232297447d3ccaed84aa52744dd6edaf309e29f5c5335220a2f328298618fa0"
+}
