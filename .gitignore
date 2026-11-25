@@ -5,3 +5,4 @@ work/
 logs/
 *.pyc
 .DS_Store
+results/formal/*/records/

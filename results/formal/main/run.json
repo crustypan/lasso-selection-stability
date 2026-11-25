@@ -1,0 +1,16 @@
+{
+  "stage": "main",
+  "planned": 2000,
+  "previous": 0,
+  "attempted": 2000,
+  "valid": 1999,
+  "failures": [
+    {
+      "condition": 8,
+      "pair": 192,
+      "error": "RuntimeError: lasso path failed convergence after retry"
+    }
+  ],
+  "workers": 8,
+  "elapsed_seconds": 181.4801220111549
+}
