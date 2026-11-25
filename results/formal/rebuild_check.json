@@ -1,0 +1,8 @@
+{
+  "method": "Fresh local Git clone; fresh official UCI download; restored published fit archives; rebuilt tables and figures; independently rescored outcomes; six new seed replays.",
+  "formal_files_compared": 75,
+  "byte_identical": 75,
+  "final_figure_from_unrounded_estimates": true,
+  "xls_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "quick_replayed_pairs": 6
+}
