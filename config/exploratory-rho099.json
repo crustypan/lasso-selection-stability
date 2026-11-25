@@ -1,0 +1,22 @@
+{
+  "label": "Post-formal exploratory analysis",
+  "root_seed": 25112599,
+  "pairs_per_condition": 200,
+  "bootstrap_seed": 3509901,
+  "bootstrap_draws": 5000,
+  "frozen_sha256": "90d687947375b8cc162d054a89f7e2a9e6ff92d24c6764f9b96c2952763c78e3",
+  "conditions": [
+    {
+      "id": 10,
+      "n": 80,
+      "rho_signal": 0.99,
+      "rho_null": 0
+    },
+    {
+      "id": 11,
+      "n": 80,
+      "rho_signal": 0,
+      "rho_null": 0.99
+    }
+  ]
+}

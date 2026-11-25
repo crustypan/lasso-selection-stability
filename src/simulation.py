@@ -104,8 +104,8 @@ def fixed_fits(x,y,penalties):
     return fits
 
 
-def evaluate_pair(c,i,root_seed,folder,*,fixed=None,ar_parameter=None,check=False):
-    n,rs,rn = CONDITIONS[c]
+def evaluate_pair(c,i,root_seed,folder,*,fixed=None,ar_parameter=None,check=False,design=None):
+    n,rs,rn = CONDITIONS[c] if design is None else design
     cov = covariance(rs,rn)
     if ar_parameter is not None:
         distance=np.abs(np.subtract.outer(np.arange(5),np.arange(5)))

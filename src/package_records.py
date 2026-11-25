@@ -10,8 +10,8 @@ from common import ROOT, atomic_json
 from formal import STAGES
 
 
-def package(stage):
-    out = ROOT / "results/formal" / stage
+def package(stage, *, base=ROOT / "results/formal"):
+    out = base / stage
     run = json.loads((out / "run.json").read_text())
     paths = sorted((out / "records").glob("*.json"))
     if len(paths) != run["valid"] or run["valid"] + len(run["failures"]) != run["planned"]:
