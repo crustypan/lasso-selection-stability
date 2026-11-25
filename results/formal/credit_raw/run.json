@@ -1,0 +1,10 @@
+{
+  "stage": "credit_raw",
+  "planned": 100,
+  "previous": 0,
+  "attempted": 100,
+  "valid": 100,
+  "failures": [],
+  "workers": 8,
+  "elapsed_seconds": 40.77549194544554
+}

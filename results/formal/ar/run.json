@@ -1,0 +1,10 @@
+{
+  "stage": "ar",
+  "planned": 200,
+  "previous": 0,
+  "attempted": 200,
+  "valid": 200,
+  "failures": [],
+  "workers": 8,
+  "elapsed_seconds": 20.466719586402178
+}

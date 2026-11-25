@@ -1,0 +1,32 @@
+{
+  "main": {
+    "pairs": 1999,
+    "checked_primary_counts": 20,
+    "max_absolute_rmse_error": 4.440892098500626e-16
+  },
+  "fixed": {
+    "pairs": 2000,
+    "checked_primary_counts": 20,
+    "max_absolute_rmse_error": 4.440892098500626e-16
+  },
+  "replication": {
+    "pairs": 400,
+    "checked_primary_counts": 4,
+    "max_absolute_rmse_error": 4.440892098500626e-16
+  },
+  "ar": {
+    "pairs": 200,
+    "checked_primary_counts": 2,
+    "max_absolute_rmse_error": 4.440892098500626e-16
+  },
+  "credit": {
+    "scored_models": 600,
+    "held_out_customers": 6000,
+    "max_absolute_score_error": 1.1102230246251565e-16
+  },
+  "credit_raw": {
+    "scored_models": 600,
+    "held_out_customers": 6000,
+    "max_absolute_score_error": 1.1102230246251565e-16
+  }
+}

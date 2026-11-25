@@ -1,0 +1,41 @@
+{
+  "frozen_sha256": "90d687947375b8cc162d054a89f7e2a9e6ff92d24c6764f9b96c2952763c78e3",
+  "stages": {
+    "main": {
+      "archive_records": 1999,
+      "replayed": 200,
+      "plan": 2000,
+      "failures": 1
+    },
+    "fixed": {
+      "archive_records": 2000,
+      "replayed": 1,
+      "plan": 2000,
+      "failures": 0
+    },
+    "replication": {
+      "archive_records": 400,
+      "replayed": 200,
+      "plan": 400,
+      "failures": 0
+    },
+    "ar": {
+      "archive_records": 200,
+      "replayed": 1,
+      "plan": 200,
+      "failures": 0
+    },
+    "credit": {
+      "archive_records": 100,
+      "replayed": 1,
+      "plan": 100,
+      "failures": 0
+    },
+    "credit_raw": {
+      "archive_records": 100,
+      "replayed": 1,
+      "plan": 100,
+      "failures": 0
+    }
+  }
+}

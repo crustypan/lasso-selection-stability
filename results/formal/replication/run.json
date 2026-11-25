@@ -1,0 +1,10 @@
+{
+  "stage": "replication",
+  "planned": 400,
+  "previous": 0,
+  "attempted": 400,
+  "valid": 400,
+  "failures": [],
+  "workers": 8,
+  "elapsed_seconds": 34.10385769791901
+}

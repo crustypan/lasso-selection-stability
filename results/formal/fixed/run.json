@@ -1,0 +1,10 @@
+{
+  "stage": "fixed",
+  "planned": 2000,
+  "previous": 0,
+  "attempted": 2000,
+  "valid": 2000,
+  "failures": [],
+  "workers": 8,
+  "elapsed_seconds": 3.475059762597084
+}

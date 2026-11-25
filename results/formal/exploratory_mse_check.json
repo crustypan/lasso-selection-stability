@@ -1,0 +1,13 @@
+{
+  "condition": 0,
+  "pair": 0,
+  "side": 0,
+  "method": "ridge",
+  "original_z": -3.732685338,
+  "new_seed": 8811350,
+  "test_n": 1000000,
+  "empirical_mse": 2.716814098355628,
+  "analytic_mse": 2.7217303846470506,
+  "mcse": 0.003847946347327916,
+  "new_z": -1.2776389917278004
+}

@@ -1,0 +1,13 @@
+condition,subset,pairs,outcome,mean_elastic_minus_lasso,lo,hi
+2,all,200,j_var,0.1156216509,0.1036563345,0.1274270065
+2,all,200,j_group,0.01973185994,0.001737898008,0.03695245334
+2,all,200,size,10.74,10.264875,11.25
+2,all,200,rmse,0.02589016532,0.02330461448,0.02876567137
+2,all,200,recall,0.04833333333,0.03666666667,0.06
+2,all,200,false_vars,10.595,10.1275,11.095
+2,matched,0,j_var,,,
+2,matched,0,j_group,,,
+2,matched,0,size,,,
+2,matched,0,rmse,,,
+2,matched,0,recall,,,
+2,matched,0,false_vars,,,

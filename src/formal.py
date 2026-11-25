@@ -81,6 +81,13 @@ def run(stage,jobs):
         c,i=task
         return folder/(f"p{i:03d}.json" if stage.startswith("credit") else f"c{c:02d}-p{i:03d}.json")
     remaining=[t for t in tasks if not destination(t).is_file()]
+    ledger_path=out/"run.json"
+    if ledger_path.is_file():
+        previous=json.loads(ledger_path.read_text())
+        recorded_failures={(f["condition"],f["pair"]) for f in previous["failures"]}
+        if previous["valid"]==len(tasks)-len(remaining) and set(remaining)==recorded_failures:
+            print(f"{stage}: existing run accounts for every planned pair",flush=True)
+            return
     failures=[]
     start=time.monotonic()
     with ProcessPoolExecutor(jobs,initializer=setup,initargs=(stage,cfg,folder)) as pool:

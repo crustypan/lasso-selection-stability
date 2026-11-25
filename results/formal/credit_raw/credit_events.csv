@@ -1,0 +1,7 @@
+method,multiplier,total,close,low,joint
+lasso,0.5,100,53,42,19
+lasso,1,100,88,42,35
+lasso,2,100,100,42,42
+elastic,0.5,100,59,33,17
+elastic,1,100,88,33,25
+elastic,2,100,100,33,33
