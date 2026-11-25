@@ -1,6 +1,6 @@
 # How Stable Is Lasso Feature Selection When Prediction Errors Are Similar?
 
-**A paired-sample simulation and a credit-default application.** Low variable overlap was common even with independent features. Near-collinear signals changed *why* the models disagreed. At training size 80, Lasso substituted disjoint sets of predictors in 5 of 600 jointly detected signal blocks at correlation 0.9 and 244 of 600 at 0.99. Elastic Net recovered more true predictors in the latter condition and selected substantially larger models.
+Two independently tuned Lasso models often attained similar average prediction errors while selecting different variables. Moderate correlation did not consistently increase this frequency across sample sizes or definitions of low overlap. Near-perfect correlation changed the source of disagreement. At training size 80, the two fits selected disjoint members in 244/600 jointly detected signal blocks at correlation 0.99, including 42 blocks where both fits missed the generating variable. Elastic Net recovered more true members and selected larger models. [Design and interpretation audit](research-audit.md)
 
 ## Design and estimands
 
@@ -38,9 +38,27 @@ When both fits hit a signal block, a complete swap means their selected members 
 
 **A worked example of stable proxy selection.** In formal pair 19 (zero-based ID), at $n=80$ and $\rho=0.99$, the two Lasso population RMSEs were 1.09977 and 1.07735. Their gap of 0.02242 met the frozen 0.05 criterion. In the second signal block both fits selected only $X_9$, while the generating coefficient was one for $X_8$ and zero for $X_9$. The pair therefore agreed on the selected member and missed the true member. Across all 120 variables its Jaccard was 0.20. This post-run illustration is the first qualifying pair by archived ID with close RMSE and a shared proxy-only block. The 4/54 count above gives the frequency among identical, jointly nonempty block memberships in this condition. [Verification record](../results/formal/full_refit.json)
 
+## How sensitive is low overlap to its definition?
+
+The prespecified RMSE-gap checks varied the definition of “close” while keeping Jaccard ≤ 0.50. At training size 80 and correlations 0 and 0.9, a gap of 0.02 gave 33/200 and 44/200 Lasso joint events. A gap of 0.10 gave 158/200 and 168/200. The absolute frequency depends strongly on the tolerance. The next check was added after formal evaluation because the conditional proportions at the original overlap cutoff were near one.
+
+| Lasso with RMSE gap ≤ 0.05, training size 80 | ρ = 0 | ρ = 0.9 | ρ = 0.99 |
+|---|---:|---:|---:|
+| Pairs with close error | 88/200 | 107/200 | 114/200 |
+| Low overlap among close pairs, frozen Jaccard ≤ 0.50 | 87/88 | 107/107 | 114/114 |
+| Low overlap among close pairs, exploratory Jaccard ≤ 0.25 | 76/88 | 75/107 | 109/114 |
+
+Under the tighter overlap cutoff the original 0.9-minus-0 difference in joint counts changes from +20 pairs to −1 pair per 200. Among close pairs, the corresponding proportions at 0.25 are 86.4% and 70.1%. Thus even the direction depends on the threshold and denominator. The conditioning event also selects a different set of pairs at each correlation. These results limit any claim that increasing correlation generally lowers support overlap. They leave intact the observed change in complete within-block substitutions, which is defined without either threshold. [Full threshold grid](../results/exploratory/interpretation/threshold_grid.csv)
+
+![Cumulative fraction of close-error Lasso pairs below each possible variable Jaccard cutoff](../results/exploratory/interpretation/overlap_distribution.png)
+
+*Supplementary figure.* Each curve is the empirical distribution of variable Jaccard among the close-error pairs in one formal condition. Read the height at a cutoff as the fraction meeting that definition of low overlap. The vertical line marks 0.50. Legend counts give the denominator for each curve.
+
+**What changed mathematically?** In the three signal blocks at size 80 and correlation 0.99, 99.2% of the pooled squared difference between Lasso coefficient vectors lay in directions that redistribute weight within a block while keeping its sum fixed. These directions accounted for only 19.2% of the signal-block contribution to squared prediction disagreement. Their covariance eigenvalue is 0.01, versus 4.96 along the common direction. Of the 244 complete swaps, 202 included the true variable in one fit and 42 included it in neither. Agreement, substitution, and truth recovery can therefore be measured separately even within the same signal group. [Derivation and denominators](mechanism.md) · [Truth counts](../results/exploratory/interpretation/signal_blocks.csv)
+
 ## Elastic Net and robustness
 
-At $n=80,\rho=0.99$, mean variable Jaccard was **0.126 for Lasso and 0.420 for Elastic Net**. The paired increase was 0.295 (95% bootstrap interval 0.279–0.311). Mean RMSEs were 1.097 and 1.104, mean sizes 11.35 and 26.82, true-variable recalls 61.75% and 99.25%, and mean false inclusions 9.50 and 23.84. At independence, Elastic Net had slightly lower variable Jaccard. Across the ten conditions only one of 1,999 pairs satisfied the prespecified requirement for similar cross-method RMSE and model size on **both** samples. The data provide too little overlap to estimate a stability advantage at comparable sparsity. [Paired method comparisons](../results/formal/main/method_differences.csv) · [Elastic Net grouping effect](https://doi.org/10.1111/j.1467-9868.2005.00503.x)
+At $n=80,\rho=0.99$, mean variable Jaccard was **0.126 for Lasso and 0.420 for Elastic Net**. The paired increase was 0.295 (95% bootstrap interval 0.279–0.311). Mean RMSEs were 1.097 and 1.104, mean sizes 11.35 and 26.82, true-variable recalls 61.75% and 99.25%, and mean false inclusions 9.50 and 23.84. At independence, Elastic Net had slightly lower variable Jaccard. Across the ten conditions only one of 1,999 pairs satisfied the prespecified requirement for similar cross-method RMSE and model size on **both** samples. The data provide too little overlap to estimate a stability advantage at comparable sparsity. The one qualifying pair (training size 240, correlation 0.5) has a descriptive point difference and no estimable pair-bootstrap interval. [Paired method comparisons](../results/formal/main/method_differences.csv) · [Elastic Net grouping effect](https://doi.org/10.1111/j.1467-9868.2005.00503.x)
 
 | Prespecified check at $n=80$ | Lasso result | Interpretation |
 |---|---|---|
@@ -85,7 +103,7 @@ Twenty-four thousand customers formed the development pool and 6,000 formed the 
 
 ![Formal credit selection frequencies](../results/formal/credit/credit.png)
 
-**Figure 3.** Cells give selection frequencies across 200 fits. “Any” means at least one month in that family. Both methods included some repayment-status information in every fit. The status months changed in 85/100 L1 pairs and 78/100 Elastic Net pairs. Bills entered 59% of L1 fits. With raw numeric status codes, L1 mean log loss worsened to 0.46653, bill inclusion rose to 98%, and mean group Jaccard rose to 0.977. This coding sensitivity illustrates how a three-group overlap measure approaches one when nearly every group enters. Shared customers and a common test set make these descriptive comparisons within this dataset. The default label permits predictive evaluation. Variable-selection truth is available only in the simulation. [Credit results and coding sensitivity](../results/formal/credit_models.csv)
+**Figure 3.** Cells give selection frequencies across 200 fits. “Any” means at least one month in that family. Both methods included some repayment-status information in every fit. The status months changed in 85/100 L1 pairs and 78/100 Elastic Net pairs. Bills entered 59% of L1 fits. With raw numeric status codes, L1 mean log loss worsened to 0.46653, bill inclusion rose to 98%, and mean group Jaccard rose to 0.977. This coding sensitivity illustrates how a three-group overlap measure approaches one when nearly every group enters. At half and twice the frozen log-loss gap, the L1 joint event occurred in 8/100 and 23/100 pairs, compared with 19/100 at the frozen gap. Shared customers and a common test set make these descriptive comparisons within this dataset. The single historical cohort supplies no time-forward transport test. The default label permits predictive evaluation. Variable-selection truth is available only in the simulation. [Credit results and coding sensitivity](../results/formal/credit_models.csv)
 
 ## Verification and limitations
 

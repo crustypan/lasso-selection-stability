@@ -126,6 +126,7 @@ def plot_overlap(frame):
                     color=color, linestyle=style, lw=1.8, label=f"ρ = {rho:g}   ({len(cell)} pairs)")
         ax.axvline(.5, linestyle="--", color="#7a8288", lw=1, zorder=0)
         ax.set(xlim=(0,1), ylim=(-.02,1.025), xlabel="Variable Jaccard cutoff", title=f"Training sample size {n}")
+        ax.set_xticks([0, .25, .5, .75, 1], ["0", "0.25", "0.50", "0.75", "1"])
         ax.legend(loc="lower right", frameon=False, fontsize=8)
         ax.spines[["top","right"]].set_visible(False)
         ax.grid(axis="y", alpha=.17)
