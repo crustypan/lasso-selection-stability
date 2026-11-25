@@ -26,4 +26,4 @@ The original workbook contains 30,000 unique customers. The audit supplies field
 
 ## Decision before formal evaluation
 
-Retain the predeclared 0.05 simulation gap and 0.5 variable-overlap cut; report continuous metrics and the actual close-event denominators. The target of 200 pairs per condition is feasible. At a proportion of 0.5 this yields Monte Carlo SE 0.0354; the pilot SE is 0.112. Proposed credit evaluation uses 100 disjoint-within-pair draws with the development-derived threshold above. Junyang's configuration review and final authorization are pending.
+Retain the predeclared 0.05 simulation gap and 0.5 variable-overlap cut; report continuous metrics and the actual close-event denominators. The target of 200 pairs per condition is feasible. At a proportion of 0.5 this yields Monte Carlo SE 0.0354; the pilot SE is 0.112. Proposed credit evaluation uses 100 disjoint-within-pair draws with the development-derived threshold above. Junyang subsequently approved these settings. The [freeze commit](https://github.com/crustypan/lasso-selection-stability/commit/38c96dca752798d113634467eb8249596a33424a) records the configuration before formal fitting.

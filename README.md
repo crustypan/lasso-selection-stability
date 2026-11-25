@@ -9,7 +9,7 @@ How often do two independent training samples yield models with similar predicti
 - **Elastic Net selected larger models.** At n = 80 and correlation 0.99 its mean variable Jaccard was 0.420 versus 0.126 for Lasso. Mean sizes were 26.82 and 11.35. Only one pair across the ten conditions met the prespecified size/risk matching rule.
 - **Monthly selection varied on real credit data.** L1 logistic regression selected the repayment-status family in all 200 training fits but changed its selected status months in 85/100 pairs. Mean test log loss was 0.4442 versus 0.5284 for the training-prevalence baseline.
 
-[Short report](docs/report.md) · [Condition table](results/formal/condition_summary.md) · [Credit case](results/formal/credit_models.csv) · [Human review](docs/review.md)
+[Short report](docs/report.md) · [Condition table](results/formal/condition_summary.md) · [Credit case](results/formal/credit_models.csv) · [Completed verification](docs/review.md) · [Application CV wording](docs/cv-drafts.md)
 
 ![Prediction and selection across independently trained models](results/formal/main/simulation.png)
 
@@ -24,7 +24,7 @@ How often do two independent training samples yield models with similar predicti
 | Primary and mechanism results | [Complete-pair ledger](results/formal/main/run.json), [conditional probabilities and sensitivities](results/formal/main/thresholds.csv), [block-level explanations](results/formal/mechanisms.csv), [method comparisons](results/formal/main/method_differences.csv) |
 | Robustness | [Independent seeds](results/formal/replication/endpoint_contrasts.csv), [pilot-fixed penalties](results/formal/fixed/conditions.csv), [AR(1) blocks](results/formal/ar/conditions.csv) |
 | Application | [Credit figure](results/formal/credit/credit.png), [monthly frequencies](results/formal/credit/credit_months.csv), [raw-encoding comparison](results/formal/credit_models.csv) |
-| Verification | [Independent metric calculations](results/formal/metric_audit.json), [404 pair replays](results/formal/replay.json), [exploratory follow-up to a test-set discrepancy](results/formal/exploratory_mse_check.json) |
+| Verification | [Independent metric calculations](results/formal/metric_audit.json), [full refit from seeds](results/formal/full_refit.json), [initial 404 pair replays](results/formal/replay.json), [exploratory follow-up to a test-set discrepancy](results/formal/exploratory_mse_check.json) |
 
 The primary simulation targeted 2,000 pairs across eight main conditions and two controls. All 1,600 main-condition pairs completed. One fit failed in the signal-only correlation control, giving 199/200 valid pairs in that condition and 1,999/2,000 overall. Fixed penalties used the same training samples and folds. Independent replicates used new seeds. The three prespecified robustness stages completed 2,000, 400 and 200 pairs, respectively. Each credit encoding completed 100 pairs.
 
@@ -65,6 +65,14 @@ export MPLCONFIGDIR="$PWD/work/mpl"
 .venv/bin/python src/audit_results.py
 .venv/bin/python src/verify_formal.py --whole-condition --jobs 2
 .venv/bin/python src/check_audit_outlier.py
+```
+
+The full refit reproduced the 200 simulation and 20 credit pilot pairs, all 4,799 valid formal stage-pair records, and the same failed pair. All six fit archives and 50 rebuilt result files matched byte for byte.
+
+The [completed verification](docs/review.md) covers the signal variance, both panels of the main comparison, the three robustness checks and an observed pair where both fits selected the same proxy. The [full-refit check](src/verify_full_refit.py) compares a separate, freshly refitted checkout to the archived study. From the reference repository, pass the path to that checkout after running the commands above.
+
+```sh
+.venv/bin/python src/verify_full_refit.py /path/to/refitted-checkout
 ```
 
 ## Credit data and license

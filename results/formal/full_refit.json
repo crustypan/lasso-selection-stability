@@ -1,0 +1,120 @@
+{
+  "refit_code_commit": "0697cf3a594b0288d9b582fd54d02ebcf50299d2",
+  "frozen_sha256": "90d687947375b8cc162d054a89f7e2a9e6ff92d24c6764f9b96c2952763c78e3",
+  "workbook_sha256": "30c6be3abd8dcfd3e6096c828bad8c2f011238620f5369220bd60cfc82700933",
+  "pilot_pairs": {
+    "simulation": 200,
+    "credit": 20
+  },
+  "stages": {
+    "main": {
+      "attempted": 2000,
+      "valid": 1999,
+      "failures": [
+        {
+          "condition": 8,
+          "pair": 192,
+          "error": "RuntimeError: lasso path failed convergence after retry"
+        }
+      ],
+      "fit_archive_sha256": "284d7d419154aaa1bc470cd7df2207eedb8e7a412162abf54aa613668599543c"
+    },
+    "fixed": {
+      "attempted": 2000,
+      "valid": 2000,
+      "failures": [],
+      "fit_archive_sha256": "3f5e0dc03f5d26e64598b58b983f140632b80cd0dcc768e93602a6d6e26c30e3"
+    },
+    "replication": {
+      "attempted": 400,
+      "valid": 400,
+      "failures": [],
+      "fit_archive_sha256": "3315fef6c8683748377f7b51582df0b69ad68a82687d6ed6e8b4971614a74eb0"
+    },
+    "ar": {
+      "attempted": 200,
+      "valid": 200,
+      "failures": [],
+      "fit_archive_sha256": "2fa4c46414d936c49a6053fa88759668c8feec6d69c29b75b9e26b9956ceee82"
+    },
+    "credit": {
+      "attempted": 100,
+      "valid": 100,
+      "failures": [],
+      "fit_archive_sha256": "197095dbb63cb42b71b445bf104319583011c7dee79a99aba9751036f7be1e1e"
+    },
+    "credit_raw": {
+      "attempted": 100,
+      "valid": 100,
+      "failures": [],
+      "fit_archive_sha256": "9e6fa472607e66babee8b1cc3559dbc970716124ba3465a2b5196bce5e8633d3"
+    }
+  },
+  "byte_identical_output_count": 50,
+  "byte_identical_outputs": [
+    "ar/conditions.csv",
+    "ar/fits.csv",
+    "ar/method_differences.csv",
+    "ar/pairs.csv",
+    "ar/thresholds.csv",
+    "ar/variable_frequencies.csv",
+    "condition_summary.md",
+    "credit/credit.png",
+    "credit/credit_events.csv",
+    "credit/credit_fit_summary.csv",
+    "credit/credit_fits.csv",
+    "credit/credit_groups.csv",
+    "credit/credit_months.csv",
+    "credit/credit_pairs.csv",
+    "credit_models.csv",
+    "credit_raw/credit.png",
+    "credit_raw/credit_events.csv",
+    "credit_raw/credit_fit_summary.csv",
+    "credit_raw/credit_fits.csv",
+    "credit_raw/credit_groups.csv",
+    "credit_raw/credit_months.csv",
+    "credit_raw/credit_pairs.csv",
+    "fixed/conditions.csv",
+    "fixed/endpoint_contrasts.csv",
+    "fixed/fits.csv",
+    "fixed/method_differences.csv",
+    "fixed/pairs.csv",
+    "fixed/thresholds.csv",
+    "fixed/variable_frequencies.csv",
+    "main/analytic_checks.csv",
+    "main/conditions.csv",
+    "main/endpoint_contrasts.csv",
+    "main/fits.csv",
+    "main/method_differences.csv",
+    "main/pairs.csv",
+    "main/simulation.png",
+    "main/thresholds.csv",
+    "main/variable_frequencies.csv",
+    "mechanisms.csv",
+    "replication/conditions.csv",
+    "replication/endpoint_contrasts.csv",
+    "replication/fits.csv",
+    "replication/method_differences.csv",
+    "replication/pairs.csv",
+    "replication/thresholds.csv",
+    "replication/variable_frequencies.csv",
+    "metric_audit.json",
+    "exploratory_mse_check.json",
+    "credit/credit_scale.json",
+    "credit_raw/credit_scale.json"
+  ],
+  "illustrative_pair": {
+    "condition": 3,
+    "pair_zero_based": 19,
+    "block_one_based": 2,
+    "true_variable_one_based": 8,
+    "shared_selected_one_based": [
+      9
+    ],
+    "rmse": [
+      1.0997664454476417,
+      1.0773465843826808
+    ],
+    "rmse_gap": 0.022419861064960855
+  }
+}
