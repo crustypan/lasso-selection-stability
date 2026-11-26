@@ -11,9 +11,10 @@ import numpy as np
 import pandas as pd
 
 from common import ROOT
-from summarize import COLORS, wilson
+from summarize import wilson
 
 
+COLORS = {"lasso": "#A54E68", "elastic": "#287C77", "ridge": "#705CA0"}
 METHODS = ("lasso", "elastic")
 RHO = [0, .5, .9, .99]
 RHO_LABELS = ["0", "0.5", "0.9", "0.99"]
